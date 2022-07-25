@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -13,14 +14,25 @@ namespace HR.Models
             LuanChuyenNhanViens = new HashSet<LuanChuyenNhanVien>();
         }
 
+        [Required(ErrorMessage = "Nhập mã nhân viên")]
+        [RegularExpression(@"[A-Za-z0-9]*$", ErrorMessage = "Tài khoản chứa kí tự đặc biệt")]
+        [MaxLength(30, ErrorMessage = "Vượt quá số kí tự 30")]
         public string MaNhanVien { get; set; }
+
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Nhập mật khẩu")]
+        [MaxLength(50, ErrorMessage = "Vượt quá số kí tự 50")]
         public string MatKhau { get; set; }
+
         public string HoTen { get; set; }
         public DateTime? NgaySinh { get; set; }
         public string QueQuan { get; set; }
         public string HinhAnh { get; set; }
         public int? GioiTinh { get; set; }
         public string DanToc { get; set; }
+
+        [MaxLength(11, ErrorMessage = "sdt tối đa 11 số")]
+        [RegularExpression(@"[0-9]*$", ErrorMessage = "chỉ được nhập số")]
         public string SdtNhanVien { get; set; }
         public string MaChucVuNv { get; set; }
         public bool TrangThai { get; set; }
@@ -29,7 +41,6 @@ namespace HR.Models
         public string MaChuyenNganh { get; set; }
         public string MaTrinhDoHocVan { get; set; }
         public string Cmnd { get; set; }
-        public int? NgayNghi { get; set; }
 
         public virtual ChucVuNhanVien MaChucVuNvNavigation { get; set; }
         public virtual ChuyenNganh MaChuyenNganhNavigation { get; set; }
