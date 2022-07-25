@@ -11,7 +11,6 @@ namespace GameStoreManager.Controllers
 {
     public class HomeController : Controller
     {
-        ShopGameContext _context;
 
         public HomeController()
         {
